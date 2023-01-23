@@ -15,6 +15,9 @@ router.get('/about', homeController.getAboutPage);
 // app.get('/create', (req, res) => {
 // 	res.render('create');
 // });
+
 router.get('/create', cubeController.getCreateCube);
+
+router.post('/create', cubeController.postCreateCube);
 
 module.exports = router;
