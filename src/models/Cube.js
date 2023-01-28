@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 //const mongoose = require('mongoose');
 
-const cubeSchema = new mongoose.Schema({
+const cubeSchema = new Schema({
 	name: {
 		type: String,
 		required: true
