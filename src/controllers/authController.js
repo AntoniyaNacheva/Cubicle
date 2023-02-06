@@ -13,6 +13,8 @@ router.post('/login', async (req, res) => {
 		const token = await authService.login(username, password);
 
 		res.cookie('auth', token, { httpOnly: true });
+		console.log(token);
+
 	} catch (err) {
 		console.log(err);
 		
