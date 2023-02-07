@@ -16,10 +16,6 @@ router.get('/404', homeController.getErrorPage);
 
 router.use('/', authController);
 
-// app.get('/create', (req, res) => {
-// 	res.render('create');
-// });
-
 router.get('/cubes/create', isAuthenticated, cubeController.getCreateCube);
 router.post('/cubes/create', isAuthenticated, cubeController.postCreateCube);
 router.get('/cubes/:cubeId/details', cubeController.getDetails);
