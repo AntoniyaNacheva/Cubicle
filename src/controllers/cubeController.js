@@ -19,7 +19,7 @@ exports.postCreateCube = async (req, res) => {
 		owner: req.user._id
 	});
 
-		await cube.save();
+	await cube.save();
 
 	res.redirect('/');
 };
@@ -27,7 +27,7 @@ exports.postCreateCube = async (req, res) => {
 exports.getDetails = async (req, res) => {
 
 	const cube = await Cube.findById(req.params.cubeId)
-	.populate('accessories').lean();
+		.populate('accessories').lean();
 
 	console.log(cube);
 
@@ -35,7 +35,7 @@ exports.getDetails = async (req, res) => {
 		return res.redirect('/404');
 	}
 
-	const isOwner = cubeUtils.isOwner(req.user, cube );
+	const isOwner = cubeUtils.isOwner(req.user, cube);
 	res.render('cube/details', { cube, isOwner });
 };
 
@@ -61,8 +61,8 @@ exports.getEditCube = async (req, res) => {
 	const cube = await cubeService.getOne(req.params.cubeId).lean();
 	const difficultyLevels = cubeUtils.generateDifficultyLevels(cube.difficultyLevel);
 
-	if(!cubeUtils.isOwner(req.user, cube)) {
-		return res.redirect('/404');
+	if (!cubeUtils.isOwner(req.user, cube)) {
+		throw new Error('You are not an owner!');
 	}
 
 	res.render('cube/edit', { cube, difficultyLevels });
